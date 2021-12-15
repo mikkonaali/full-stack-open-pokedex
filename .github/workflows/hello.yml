@@ -14,3 +14,9 @@ jobs:
       - name: Print message
         run: |
           echo "Hello World!"
+      - name: Current time
+        run: |
+          time
+      - name: Current directory contents
+        run: |
+          ls -la
