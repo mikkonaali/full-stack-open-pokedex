@@ -16,7 +16,7 @@ jobs:
           echo "Hello World!"
       - name: Current time
         run: |
-          time
+          date
       - name: Current directory contents
         run: |
           ls -la
