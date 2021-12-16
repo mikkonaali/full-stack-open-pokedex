@@ -36,3 +36,4 @@ jobs:
           heroku_email: 'mikko.naalisvaara@gmail.com'
           healthcheck: 'https://desolate-river-92978.herokuapp.com/health'
           checkstring: 'ok'
+          rollbackonhealthcheckfailed: true
