@@ -47,14 +47,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-      - name: Slack notification
+      - name: Slack success notification
+        if: ${{ job.status == 'success'}}
+        uses: 8398a7/action-slack@v3
+        with:
+          fields: repo, commit
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Slack error notification
+        if: ${{ job.status == 'failure' || job.status == 'cancelled' }}
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: 'simple deployment pipeline '
-          fields: repo, commit, message, author
+          fields: all
           mention: here
           if_mention: failure, cancelled
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: always()
