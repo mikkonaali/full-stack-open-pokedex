@@ -9,3 +9,5 @@ This file is intended to commit to feature branch.
 **Edit 12/17/21**: Updated the Master branch protection rule to require all PRs from different branches to receive approval before a merge to Master.
 
 **Edit 12/17/21**: Added protection to Master branch
+
+**Edit 12/17/21**: Added Slack notifications for deployment
