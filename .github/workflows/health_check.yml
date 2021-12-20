@@ -8,6 +8,7 @@ on:
 jobs:
   health_check:
     name: check if heroku site responds
+    runs-on: ubuntu-18.04
     steps:
       - name: ping
         uses: jtalk/url-health-check-action@v2
