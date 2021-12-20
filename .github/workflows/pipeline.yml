@@ -73,6 +73,8 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Test if job status failure
-        if: ${{ job.status == 'failure'}}
+        if: always()
+        env:
+          JOB_CONTEXT: ${{ toJSON(job) }}
         run: |
-          echo ${{ job.status }}
+          echo "$JOB_CONTEXT"
