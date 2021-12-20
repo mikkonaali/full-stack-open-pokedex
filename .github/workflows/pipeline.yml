@@ -10,7 +10,7 @@ on:
 
 jobs:
   simple_deployment_pipeline:
-    name: simple deployment pipeline
+    name: deployment
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -47,10 +47,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-      - name: Slack success notification
+      - name: slack_success
         if: ${{ job.status == 'success'}}
         uses: 8398a7/action-slack@v3
         with:
+          job_name: deployment
           status: custom
           fields: workflow, job, commit, repo, ref, author, took
           custom_payload: |
@@ -66,6 +67,7 @@ jobs:
         if: ${{ job.status == 'failure' || job.status == 'cancelled' }}
         uses: 8398a7/action-slack@v3
         with:
+          job_name: deployment
           status: ${{ job.status }}
           author_name: 'simple deployment pipeline '
           fields: all
