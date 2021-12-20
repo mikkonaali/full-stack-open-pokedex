@@ -73,5 +73,6 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Test job status too
+        if: always()
         run: |
           echo ${{ job.status }}
