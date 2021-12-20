@@ -64,11 +64,13 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Slack error notification
-        if: ${{ job.status == 'failure' || job.status == 'cancelled' }}
+        if: always() #${{ job.status == 'failure' || job.status == 'cancelled' }}
         uses: 8398a7/action-slack@v3
         with:
           job_name: deployment
           status: ${{ job.status }}
-          fields: all
+          fields: repo, commit
+          mention: here
+          if_mention: failure, cancelled
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
