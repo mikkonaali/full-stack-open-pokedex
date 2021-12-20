@@ -51,9 +51,15 @@ jobs:
         if: ${{ job.status == 'success'}}
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ job.status }}
-          author_name: 'simple deployment pipeline'
-          fields: repo, commit
+          status: custom
+          fields: workflow, job, commit, repo, ref, author, took
+          custom_payload: |
+            {
+              attachments: [{
+                color: 'good',
+                text: `a new version has been deployed`,
+              }]  
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Slack error notification
