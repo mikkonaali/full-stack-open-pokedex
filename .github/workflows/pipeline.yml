@@ -72,7 +72,6 @@ jobs:
           fields: repo, message, commit, author, took
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      - name: Test job status
-        if: ${{ job.status == 'failure' }}
+      - name: Test job status too
         run: |
-          echo "Job failed"
+          echo ${{ job.status }}
