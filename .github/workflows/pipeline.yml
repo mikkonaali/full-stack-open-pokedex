@@ -52,12 +52,12 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: custom
-          fields: commit, author, took
+          fields: commit, author, job, took
           custom_payload: |
             {
               attachments: [{
                 color: 'good',
-                text: `a new version has been deployed to http://desolate-river-92978.herokuapp.com/ (${process.env.AS_COMMIT}) by ${process.env.AS_AUTHOR} build took ${process.env.AS_TOOK}`
+                text: `${process.env.AS_JOB}\na new version has been deployed to http://desolate-river-92978.herokuapp.com/ (${process.env.AS_COMMIT}) by ${process.env.AS_AUTHOR} build ${{ job.status }} took ${process.env.AS_TOOK}`
               }]  
             }
         env:
