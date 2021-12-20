@@ -1,12 +1,14 @@
-name: Pokedex scheduled health check
+---
+name: Pokedex health check
 
 on:
   schedule:
-    - cron: '0,15,30,45 * * * *'
+    - cron: '5,20,35,50 * * * *'
 
 jobs:
-  healthcheck:
+  health_check:
     name: ping heroku url
+    runs-on: ubuntu-18.04
     uses: jtalk/url-health-check-action@v2
     with:
       url: https://desolate-river-92978.herokuapp.com/
