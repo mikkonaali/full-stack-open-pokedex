@@ -29,7 +29,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
-          start: npm run start-prod
+          start: npm run start-prods
           wait-on: http://localhost:5000
       - name: deploy
         if: ${{github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')}}
@@ -47,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-      - name: slack_success
+      - name: Slack success notification
         if: ${{ job.status == 'success'}}
         uses: 8398a7/action-slack@v3
         with:
