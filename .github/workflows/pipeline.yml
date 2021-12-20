@@ -69,9 +69,6 @@ jobs:
         with:
           job_name: deployment
           status: ${{ job.status }}
-          author_name: 'simple deployment pipeline '
           fields: all
-          mention: here
-          if_mention: failure, cancelled
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
